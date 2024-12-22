@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<meta http-equiv="refresh" content="5; url=http://localhost:12393/">
+<style>
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: black;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+        background-color: #504e4e;
+    }
+</style>
+<div class="login" style="justify-content: center; align-items: center">
+    <div class="hero">
+        <h1>等待加载, {{ user.username }}...</h1>
+    </div>
+    <div class="main">
+        <p><a href="{% url 'account_logout' %}" class="button">退出</a></p>
+    </div>
+</div>
+{% endblock %}

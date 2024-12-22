@@ -1,0 +1,53 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="login">
+    <div class="hero">
+        <h1>注册<br>请输入准确的信息</h1>
+        <p>如果你已经有账号<br>可以<a href="{% url 'account_login' %}">点击这里</a>进行登录.</p>
+
+        <div>
+            <span class="error">{{ form.username.errors }}</span>
+            <span class="error">{{ form.email.errors }}</span>
+            <span class="error">{{ form.password1.errors }}</span>
+            <span class="error">{{ form.password2.errors }}</span>
+            <div class="error">{{ form.non_field_errors }}</div>
+        </div>
+
+    </div>
+    <div class="main">
+        <form method="post">
+            {% csrf_token %}
+            <p>
+                <input type="text" name="username" placeholder="用户名" required>
+            </p>
+            <p>
+                <input type="email" name="email" placeholder="邮箱" required>
+            </p>
+            <p class="password">
+                <input type="password" name="password1" placeholder="密码" required>
+                <i class="ri-eye-off-line"></i>
+            </p>
+            <p class="password">
+                <input type="password" name="password2" placeholder="确认密码" required>
+                <i class="ri-eye-off-line"></i>
+            </p>
+            <p>
+                <input type="submit" class="submit" value="注册">
+            </p>
+
+        </form>
+        <div class="options">
+            <div class="separator">
+                <p>其他平台</p>
+
+            </div>
+            <ul>
+                <li><a href="#"><i class="ri-steam-fill ri-2x"></i></a></li>
+                <li><a href="#"><i class="ri-playstation-fill ri-2x"></i></a></li>
+                <li><a href="#"><i class="ri-xbox-fill ri-2x"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

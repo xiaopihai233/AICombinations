@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sakura心理情感助理</title>
+</head>
+<body>
+    <div style="display: flex; justify-content: center; align-items: center; margin-top: -15vh; height: 100vh;">
+
+        <div style="width: 700px; height: 300px;">
+            <p style="font-size: 68px; font-weight: bold; color: #171a21 ">Sakura情感助理</p>
+            <p style="font-size: 23px; margin-top: -50px;">Sakura情感助理致力于通过同理心和耐心帮助来访者探索内心、理解情感，并引导他们走向心灵的平静与成长。</p>
+
+
+            <a href="{% url 'account_register' %}" style="text-decoration: none; color: inherit;">
+                <button style="padding: 15px 30px; font-size: 20px; color: white; background-color: #4460F1; border: none; border-radius: 5px; cursor: pointer; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">注册</button>
+            </a>
+
+
+            <a href="{% url 'account_login' %}" style="text-decoration: none; color: inherit;">
+                <button style="padding: 15px 30px; font-size: 20px; color: black; background-color: white; border: 1px solid black; border-radius: 5px; cursor: pointer; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">登录</button>
+            </a>
+
+        </div>
+
+        <div>
+            <img style="width: 600px; height: 700px" src="https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F1c42a8de70b220fc1737f6e95b3c0373637228db-1319x1512.gif&w=1920&q=75" alt="Sakura情感助理">
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="login">
+    <div class="hero">
+        <h1>登录</h1>
+        <p>还没有账号？<a href="{% url 'account_register' %}">点击这里</a>进行注册.</p>
+
+        <div>
+            <span class="error">{{ form.username.errors }}</span>
+            <span class="error">{{ form.password.errors }}</span>
+            <div class="error">{{ form.non_field_errors }}</div>
+        </div>
+
+    </div>
+    <div class="main">
+        <form method="post">
+            {% csrf_token %}
+            <p>
+                <input type="text" name="username" placeholder="用户名" required>
+            </p>
+            <p class="password">
+                <input type="password" name="password" placeholder="密码" required>
+                <i class="ri-eye-off-line"></i>
+            </p>
+            <p>
+                <input type="submit" class="submit" value="登录">
+            </p>
+        </form>
+        <div class="options">
+            <div class="separator">
+                <p>忘记密码？<a href="{% url 'reset_password' %}"><font color="#1e90ff">点击这里</font></a>&nbsp;重置密码.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+

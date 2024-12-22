@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background-color: whitesmoke;
+        }
+        header {
+            background: linear-gradient(135deg, #2d90a5, #c18bb1); /* 渐变色 */
+            color: white;
+            padding: 10px 20px;
+            text-align: left;
+            position: relative;
+        }
+        header h1 {
+            margin: 0;
+            display: inline-block;
+        }
+        header .logout-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background-color: #d6766d;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        header .back-btn {
+            position: absolute;
+            top: 10px;
+            right: 110px;
+            background-color: #e4a0b6;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #history-content {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #history-content p {
+            margin: 10px 0;
+        }
+        .user-role {
+            color: #3498db;
+        }
+        .assistant-role {
+            color: #2ecc71;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            function updateHistory() {
+                $.ajax({
+                    url: '/accounts/api/history/',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        var content = '';
+                        data.forEach(function(item) {
+                            if (item.role !== "system") {
+                                var roleClass = item.role === "user" ? "user-role" : "assistant-role";
+                                content += '<p><strong class="' + roleClass + '">' + item.role + ':</strong> ' + item.content.replace(/\n/g, '<br>') + '</p>';
+                            }
+                        });
+                        $('#history-content').html(content);
+                    },
+                    error: function(error) {
+                        console.error('Error fetching history:', error);
+                    }
+                });
+            }
+
+            // 页面加载时立即调用一次
+            updateHistory();
+
+            // 设置定时器每5秒更新一次历史记录
+            setInterval(updateHistory, 5000);
+
+            // 添加返回按钮点击事件
+            $('.back-btn').click(function(e){
+                e.preventDefault();
+                window.location.href = 'http://localhost:12393/';
+            });
+
+            // 添加退出按钮点击事件
+            $('.logout-btn').click(function(e){
+                e.preventDefault();
+                window.location.href = 'http://127.0.0.1:8000/';
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>历史对话记录</h1>
+        <button class="back-btn">返回</button>
+        <button class="logout-btn">退出观察</button>
+    </header>
+    <div id="history-content">
+        <!-- 历史消息将在这里显示 -->
+    </div>
+</body>
+</html>
